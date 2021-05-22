@@ -66,7 +66,7 @@ class BlockChain:
 
         guess = f'{last_proof}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
-        return guess_hash[:6] == "000000"
+        return guess_hash[:5] == "00000"
 
     @property
     def latest_block(self):

@@ -1,8 +1,15 @@
 import blockchain as bc
 import string
 import random
+import pickle
 
-blockchain = bc.BlockChain()
+with open('blockchain.store', 'rb') as blockchain_dictionary_file:
+    blockchain = pickle.load(blockchain_dictionary_file)
+
+if True:
+    blockchain = bc.BlockChain()
+    with open('blockchain.store', 'wb') as blockchain_dictionary_file:
+        pickle.dump(blockchain, blockchain_dictionary_file)
 
 print("***Mining Bizcoin about to start***")
 print(blockchain.chain)
@@ -26,3 +33,5 @@ while (True):
     print("***Mining Bizcoin has been successful***")
     print("Coins in circulation: " + str(block.index))
     print(blockchain.chain)
+    with open('blockchain.store', 'wb') as blockchain_dictionary_file:
+        pickle.dump(blockchain, blockchain_dictionary_file)
